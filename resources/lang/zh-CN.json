@@ -1,0 +1,10 @@
+{
+    "name": "名称",
+    "type": "类型",
+    "status": "状态",
+    "description": "描述",
+    "admin.index": "列表",
+    "admin.description": "描述",
+    "image": "图片"
+}
+
