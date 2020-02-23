@@ -96,7 +96,7 @@
             <h3>Email: 547605677@qq.com</h3>
             <h3>Position: Backend development engineer</h3>
             <h3><img src="{{asset('icons/blog.png')}}" class="icon"><a href="http://blog.luochenjie.com">Blog</a></h3>
-            <h3><img src="{{asset('icons/sweet.png')}}" class="icon"><a href="https://love.luochenjie.com">Love</a></h3>
+{{--            <h3><img src="{{asset('icons/sweet.png')}}" class="icon"><a href="https://love.luochenjie.com">Love</a></h3>--}}
             <h3><img src="{{asset('icons/github.png')}}" class="icon"><a href="https://github.com/luocjv587">Github</a>
             </h3>
             <h3><img src="{{asset('icons/admin.png')}}" class="icon"><a href="http://www.luochenjie.com/admin">Admin</a>
