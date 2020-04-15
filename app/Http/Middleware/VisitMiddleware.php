@@ -20,14 +20,14 @@ class VisitMiddleware
         $ip = $this->getIp();
         $browser = $this->getBrowser();
         $lang = $this->getLang();
-//        $location = $this->getLocation();
-        $location = '-';
+        $location = $this->getLocation();
+//        $location = '-';
         Visit::create([
-            'os'=>$os,
-            'ip'=>$ip,
-            'browser'=>$browser,
-            'lang'=>$lang,
-            'location'=>$location,
+            'os' => $os,
+            'ip' => $ip,
+            'browser' => $browser,
+            'lang' => $lang,
+            'location' => $location,
         ]);
 
         return $next($request);
@@ -119,20 +119,14 @@ class VisitMiddleware
     {
         empty($ip) && $ip = $this->getIp();
         if ($ip == "127.0.0.1") return "本机地址";
-        $api = "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=$ip";   //请求新浪ip地址库
+//        $api = "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=$ip";   //请求新浪ip地址库
+        $api = "http://api.map.baidu.com/location/ip?ak=hfyCxQizAsYZjTB4XIcm4n4LOc9ip47P&ip=" . $ip; //请求百度ip地址哭
         $json = @file_get_contents($api);
         $arr = json_decode($json, true);
-        $country = $arr['country'];
-        $province = $arr['province'];
-        $city = $arr['city'];
-        if ((string)$country == "中国") {
-            if ((string)($province) != (string)$city) {
-                $_location = $province . $city;
-            } else {
-                $_location = $country . $city;
-            }
+        if (isset($arr['address'])) {
+            $_location = $arr['address'];
         } else {
-            $_location = $country;
+            $_location = '-';
         }
         return $_location;
     }
