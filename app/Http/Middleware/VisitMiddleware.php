@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Jobs\VisitSave;
 use App\Models\Visit;
 use Closure;
 
@@ -21,15 +22,7 @@ class VisitMiddleware
         $browser = $this->getBrowser();
         $lang = $this->getLang();
         $location = $this->getLocation();
-//        $location = '-';
-        Visit::create([
-            'os' => $os,
-            'ip' => $ip,
-            'browser' => $browser,
-            'lang' => $lang,
-            'location' => $location,
-        ]);
-
+        VisitSave::dispatch($os, $ip, $browser, $lang, $location);
         return $next($request);
     }
 
